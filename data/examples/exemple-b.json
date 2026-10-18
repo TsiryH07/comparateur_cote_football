@@ -1,0 +1,26 @@
+[
+  {
+    "sourceMatchId": "b-paris-om",
+    "homeTeam": "PSG",
+    "awayTeam": "Marseille",
+    "competition": "  LIGUE 1  ",
+    "schedule": { "dayOffset": 1, "time": "18:05:00Z" },
+    "odds": { "1": 2.05, "X": 3.55, "2": 5.1 }
+  },
+  {
+    "sourceMatchId": "b-real-barca",
+    "homeTeam": "  REAL MADRID ",
+    "awayTeam": "FC Barcelona",
+    "competition": "La Liga",
+    "schedule": { "dayOffset": 1, "time": "20:00:00Z" },
+    "odds": { "1": 2.15, "X": 3.45, "2": 3.15 }
+  },
+  {
+    "sourceMatchId": "b-mu-chelsea",
+    "homeTeam": "Man United",
+    "awayTeam": "Chelsea",
+    "competition": "Premier League",
+    "schedule": { "dayOffset": 2, "time": "15:00:00Z" },
+    "odds": { "1": 2.35, "X": 3.42, "2": 3.1 }
+  }
+]

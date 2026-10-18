@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#137554" />
+    <meta name="description" content="Comparez les cotes de football 1X2, repérez les écarts et retrouvez l'historique de vos collectes." />
+    <title>Coteo — Comparateur de cotes football</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Aller au contenu</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="Coteo, accueil">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M6 16h20M12 4v5h8V4M12 28v-5h8v5"/><circle cx="16" cy="16" r="4"/></svg>
+          </span>
+          <span>coteo<span class="brand-period">.</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+          <button class="nav-button active" data-view="overview" aria-current="page" type="button">
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg>
+            Vue d’ensemble
+          </button>
+          <button class="nav-button" data-view="history" type="button">
+            <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M3 7a7 7 0 1 1-.1 6M3 3v4h4M10 6v4l3 2"/></svg>
+            Historique
+          </button>
+        </nav>
+        <div class="header-status"><span class="status-dot" aria-hidden="true"></span><span id="connection-label">Connexion…</span></div>
+      </div>
+    </header>
+
+    <main class="workspace" id="main-content">
+      <section class="page-heading" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span class="football-icon" aria-hidden="true">⚽</span> FOOTBALL · AVANT-MATCH</p>
+          <h1 id="page-title">Vue d’ensemble</h1>
+          <p class="page-description" id="page-description">Comparez les cotes. Repérez les écarts.</p>
+        </div>
+        <div class="heading-actions">
+          <button class="button button-primary" id="collect-button" type="button">
+            <svg class="refresh-icon" aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M16.5 8a6.5 6.5 0 0 0-11-3L3 7m0 0V3m0 4h4m-3.5 5a6.5 6.5 0 0 0 11 3l2.5-2m0 0v4m0-4h-4"/></svg>
+            Actualiser les cotes
+          </button>
+          <span class="last-updated" id="last-updated">Chargement de la dernière collecte…</span>
+        </div>
+      </section>
+
+      <div class="demo-banner">
+        <span class="demo-label"><span aria-hidden="true">◈</span><span id="data-mode-label">Chargement des données</span></span>
+        <p id="data-mode-description">Connexion au service de cotes…</p>
+      </div>
+
+      <div class="service-notice" id="service-notice" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <p id="service-message"></p>
+        <button class="button button-soft" id="service-retry" type="button">Réessayer la connexion</button>
+      </div>
+
+      <section class="stats-grid" aria-label="Chiffres de la dernière collecte">
+        <article class="stat-card">
+          <div class="stat-heading"><span>Matchs à venir</span><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2"/><path d="M6 2v4m8-4v4M3 8h14m-10 4h2m2 0h2"/></svg></span></div>
+          <strong id="stats-matches">—</strong><p>dans la dernière collecte</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-heading"><span id="sources-stat-label">Sources</span><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="6" height="10" rx="1"/><rect x="11" y="3" width="6" height="14" rx="1"/><path d="M5 10h2m-2 3h2m6-7h2m-2 4h2m-2 3h2"/></svg></span></div>
+          <strong id="stats-sources">—</strong><p id="sources-subtitle">sources configurées</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-heading"><span>Matchs rapprochés</span><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m8 5 3-2a4 4 0 0 1 5 6l-3 2m-1 4-3 2a4 4 0 0 1-5-6l3-2m0 4 6-6"/></svg></span></div>
+          <strong id="stats-matched">—</strong><p>disponibles sur plusieurs sources</p>
+        </article>
+        <article class="stat-card stat-card-accent">
+          <div class="stat-heading"><span>Écarts détectés</span><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="m3 14 5-5 3 3 6-7m-5 0h5v5"/></svg></span></div>
+          <strong id="stats-alerts">—</strong><p>au-dessus de votre seuil</p>
+        </article>
+      </section>
+
+      <section class="settings-panel" aria-label="Paramètres de comparaison">
+        <div class="settings-intro"><span class="settings-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg></span><div><h2>Vos critères</h2><p id="threshold-help">Écart calculé par rapport à la cote la plus basse.</p></div></div>
+        <form id="threshold-form" class="settings-form">
+          <div class="threshold-control"><label for="threshold-value">Seuil d’écart</label><div class="threshold-fields"><input id="threshold-value" name="threshold" type="number" min="0" step="any" value="10" inputmode="decimal" required aria-label="Valeur du seuil d’écart"/><select id="threshold-mode" aria-label="Unité du seuil"><option value="percentage">%</option><option value="absolute">cote</option></select></div></div>
+          <button class="button button-soft" id="settings-save" type="submit">Appliquer</button>
+          <div class="auto-control"><label class="switch" for="automatic-toggle"><input id="automatic-toggle" type="checkbox" checked/><span class="switch-track" aria-hidden="true"></span></label><div><label class="auto-label" for="automatic-toggle">Collecte automatique</label><p id="next-collection">Toutes les 10 minutes</p></div></div>
+        </form>
+      </section>
+
+      <section id="overview-view" aria-label="Comparaison des rencontres">
+        <div class="overview-grid">
+          <div class="matches-column">
+            <section class="panel matches-panel" aria-labelledby="matches-title">
+              <div class="panel-heading"><div><h2 id="matches-title">Les rencontres <span class="count-badge" id="match-count">0</span></h2><p>Les cotes 1X2, source par source.</p></div><label class="alert-filter"><input id="only-alerts" type="checkbox"/><span>Avec écart uniquement</span></label></div>
+              <div class="table-toolbar">
+                <label class="search-field"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input id="match-search" type="search" placeholder="Rechercher une équipe…" aria-label="Rechercher une rencontre"/></label>
+                <select class="filter-select" id="competition-filter" aria-label="Filtrer par compétition"><option value="">Toutes les compétitions</option></select>
+              </div>
+              <div class="table-scroll"><table class="odds-table"><caption class="sr-only">Cotes des rencontres par source. Les meilleures cotes apparaissent en vert.</caption><thead><tr><th scope="col">Rencontre</th><th scope="col">Source</th><th scope="col" class="number-column">1</th><th scope="col" class="number-column">X</th><th scope="col" class="number-column">2</th><th scope="col" class="spread-column">Écart max.</th></tr></thead><tbody id="matches-body"></tbody></table></div>
+              <div class="empty-state" id="matches-empty" hidden><span class="empty-state-icon" aria-hidden="true">⌕</span><p>Aucune rencontre à afficher.</p><button class="button button-soft" id="empty-collect" type="button">Lancer une collecte</button></div>
+              <div class="table-legend"><span><i class="legend-square" aria-hidden="true"></i>Meilleure cote disponible</span><span>1 : domicile <span class="legend-separator">·</span> X : nul <span class="legend-separator">·</span> 2 : extérieur</span></div>
+            </section>
+            <details class="diagnostics" id="diagnostics" hidden><summary id="diagnostics-summary">Informations sur la dernière collecte</summary><ul id="diagnostics-list"></ul></details>
+          </div>
+
+          <aside class="side-column" aria-label="Alertes et sources">
+            <section class="panel alerts-panel" aria-labelledby="alerts-title"><div class="panel-heading"><div><div class="section-kicker"><span class="live-dot" aria-hidden="true"></span> À SURVEILLER</div><h2 id="alerts-title">Les écarts <span class="count-badge count-badge-green" id="alerts-count">0</span></h2></div><svg class="trend-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m4 17 6-6 4 4 6-9m-6 0h6v6"/></svg></div><div id="alerts-list"><p class="empty-message">Les écarts de la dernière collecte apparaîtront ici.</p></div></section>
+            <section class="panel sources-panel" aria-labelledby="sources-title"><div class="panel-heading"><h2 id="sources-title">Vos sources</h2><span class="local-tag" id="sources-kind">SOURCES</span></div><div class="sources-list" id="sources-list"></div><p class="sources-note" id="sources-note">Chargement des sources…</p></section>
+            <p class="side-note"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7"/><path d="M10 9v5m0-8v.5"/></svg><span id="comparison-note">Les écarts comparent une même issue entre plusieurs sources.</span></p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="history-view" aria-labelledby="history-title" hidden>
+        <div class="panel history-panel">
+          <div class="panel-heading"><div><h2 id="history-title">L’historique des cotes</h2><p>Retrouvez les observations enregistrées à chaque collecte.</p></div><button class="button button-outline" id="history-refresh" type="button">Actualiser</button></div>
+          <div class="table-toolbar"><label class="search-field"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input id="history-search" type="search" placeholder="Rechercher dans l’historique…" aria-label="Rechercher dans l’historique"/></label><label class="history-limit-label" for="history-limit">Afficher <select class="filter-select" id="history-limit"><option value="50">50 observations</option><option value="100">100 observations</option><option value="250">250 observations</option></select></label></div>
+          <div class="table-scroll"><table class="history-table"><caption class="sr-only">Historique des cotes, de la collecte la plus récente à la plus ancienne.</caption><thead><tr><th scope="col">Collecte le</th><th scope="col">Rencontre</th><th scope="col">Source</th><th scope="col" class="number-column">1</th><th scope="col" class="number-column">X</th><th scope="col" class="number-column">2</th></tr></thead><tbody id="history-body"></tbody></table></div>
+          <div class="empty-state" id="history-empty" hidden><p>Aucune observation pour le moment. Lancez votre première collecte.</p></div>
+        </div>
+      </section>
+      <noscript><p class="noscript-notice">Activez JavaScript pour consulter les cotes et lancer les collectes.</p></noscript>
+    </main>
+    <footer class="site-footer"><span><strong>coteo.</strong> Le football, côté cotes.</span><span>1X2 <span class="footer-dot">·</span><span id="footer-data-mode">Chargement des données</span><span class="footer-dot">·</span> Historique local</span></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

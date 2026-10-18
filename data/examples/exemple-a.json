@@ -1,0 +1,50 @@
+[
+  {
+    "sourceMatchId": "a-psg-marseille",
+    "homeTeam": "Paris Saint-Germain",
+    "awayTeam": "Olympique de Marseille",
+    "competition": "Ligue 1",
+    "schedule": { "dayOffset": 1, "time": "18:00:00Z" },
+    "odds": { "1": 1.8, "X": 3.6, "2": 4.5 }
+  },
+  {
+    "sourceMatchId": "a-real-barcelona",
+    "homeTeam": "Real Madrid",
+    "awayTeam": "FC Barcelona",
+    "competition": "La Liga",
+    "schedule": { "dayOffset": 1, "time": "20:00:00Z" },
+    "odds": { "1": 2.1, "X": 3.4, "2": 3.2 }
+  },
+  {
+    "sourceMatchId": "a-united-chelsea",
+    "homeTeam": "Manchester United",
+    "awayTeam": "Chelsea",
+    "competition": "Premier League",
+    "schedule": { "dayOffset": 2, "time": "15:00:00Z" },
+    "odds": { "1": 2.25, "X": 3.4, "2": 3.0 }
+  },
+  {
+    "sourceMatchId": "a-lyon-monaco",
+    "homeTeam": "Lyon",
+    "awayTeam": "Monaco",
+    "competition": "Ligue 1",
+    "schedule": { "dayOffset": 1, "time": "16:00:00Z" },
+    "odds": { "1": 2.2, "X": 3.3, "2": 3.0 }
+  },
+  {
+    "sourceMatchId": "a-past-example",
+    "homeTeam": "Liverpool",
+    "awayTeam": "Everton",
+    "competition": "Premier League",
+    "schedule": { "dayOffset": -1, "time": "15:00:00Z" },
+    "odds": { "1": 1.7, "X": 3.8, "2": 4.5 }
+  },
+  {
+    "sourceMatchId": "a-invalid-example",
+    "homeTeam": "Bayern Munich",
+    "awayTeam": "Dortmund",
+    "competition": "Bundesliga",
+    "schedule": { "dayOffset": 1, "time": "17:00:00Z" },
+    "odds": { "1": 0.9, "X": 3.5, "2": 4.0 }
+  }
+]

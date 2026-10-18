@@ -1,13 +1,28 @@
 {
   "name": "comparateur_cote_football",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Comparateur de cotes football 1X2 : 1xBet, Bet261, Pinnacle et historique SQLite",
+  "main": "dist/index.js",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
-  "dev": "tsx watch src/index.ts",
-  "build": "tsc",
-  "start": "node dist/index.js"
-},
+    "dev": "tsx watch src/index.ts --watch",
+    "demo": "tsx src/index.ts --once --mock",
+    "collect": "tsx src/index.ts --once",
+    "watch": "tsx src/index.ts --watch",
+    "history": "tsx src/index.ts --history",
+    "alerts": "tsx src/index.ts --alerts",
+    "web": "tsx src/web/main.ts",
+    "web:dev": "tsx watch src/web/main.ts",
+    "web:prod": "node dist/web/main.js",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.tests.json",
+    "check": "npm run typecheck && npm test && npm run build",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "start": "node dist/index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,5 +32,4 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }
-  
 }
